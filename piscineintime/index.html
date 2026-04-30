@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiscineIntime – Piscine, Impianti & Servizi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/ordini.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ===== BANNER PROMO ===== -->
+<div class="promo-banner">
+  <div class="promo-scroll" id="promoBanner">
+    <span>🌊 PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp;</span>
+    <span>🌊 PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp; PROMOZIONI &nbsp;·&nbsp;</span>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <div class="logo-area" onclick="showPage('home')">
+      <img src="img/logo.jpeg" alt="Piscine In Time">
+      <div class="logo-text">PiscineIntime<span>Piscine &amp; Servizi</span></div>
+    </div>
+
+    <nav>
+      <button class="nav-link" onclick="showPage('home')">🏠 Home</button>
+
+      <div class="nav-item">
+        <button class="nav-link" onclick="navOpenItem(this,event)">🏊 Ramo Piscine
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown">
+          <a href="#" onclick="showPage('idromassaggi');return false;">💧 Idromassaggi</a>
+          <a href="#" onclick="showPage('piscine');return false;">🏊 Piscine</a>
+          <a href="#" onclick="showPage('impiantiAcqua');return false;">⚙️ Impianti &amp; Acqua</a>
+          <a href="#" onclick="showPage('meccanici');return false;">🔧 Impianti meccanici</a>
+        </div>
+      </div>
+
+      <button class="nav-link" onclick="showPage('chimico')">🧪 Ramo Chimico</button>
+      <button class="nav-link" onclick="showPage('zanzare')">🌿 Ramo Antizanzare</button>
+      
+      <button class="nav-link btn-ordini" onclick="showPage('ordini')">🛒 Ordini</button>
+      <button class="nav-link" onclick="showPage('contatti')">📍 Contatti</button>
+
+      <div class="nav-item" id="navUserItem">
+        <button class="nav-link nav-user-btn" id="navUserBtn" onclick="handleUserNavClick(event)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span id="navUserLabel">Accedi</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="navUserChevron" style="width:14px;height:14px;display:none;"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown" id="navUserDropdown" style="min-width:180px;right:0;left:auto;">
+          <div id="navUserDropdownInner"></div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hamburger" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE NAV ===== -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="toggleMobileNav()">✕</button>
+  <a href="#" onclick="showPage('home');toggleMobileNav();return false;">🏠 Home</a>
+  <div class="mob-accordion">
+    <button class="mob-accordion-btn" onclick="toggleMobAccordion(this)">🏊 Ramo Piscine<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="mob-accordion-body">
+      <a href="#" onclick="showPage('idromassaggi');toggleMobileNav();return false;">💧 Idromassaggi</a>
+      <a href="#" onclick="showPage('piscine');toggleMobileNav();return false;">🏊 Piscine</a>
+      <a href="#" onclick="showPage('impiantiAcqua');toggleMobileNav();return false;">⚙️ Impianti &amp; Acqua</a>
+      <a href="#" onclick="showPage('meccanici');toggleMobileNav();return false;">🔧 Impianti meccanici</a>
+    </div>
+  </div>
+  <a href="#" onclick="showPage('chimico');toggleMobileNav();return false;">🧪 Ramo Chimico</a>
+  <a href="#" onclick="showPage('zanzare');toggleMobileNav();return false;">🌿 Ramo Antizanzare</a>
+  
+  <a href="#" onclick="showPage('ordini');toggleMobileNav();return false;" class="mob-ordini">🛒 Ordini</a>
+  <a href="#" onclick="showPage('contatti');toggleMobileNav();return false;">📍 Contatti</a>
+  <div id="mobileUserSection" style="border-top:2px solid var(--acqua2);margin-top:8px;padding-top:8px;"></div>
+</div>
+
+<!-- ================================================================ -->
+<!--                          HOME                                     -->
+<!-- ================================================================ -->
+<div id="page-home" class="page active">
+  <div id="home">
+    <div class="hero-content">
+      <div class="hero-badge">⭐ Dal 2003 esperti in piscine</div>
+      <h1 class="hero-titolo">La tua piscina da sogno<br><span>inizia qui</span></h1>
+      <p class="hero-sub">Costruzione, manutenzione, trattamento acque e molto altro. Qualità e professionalità per ogni esigenza.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('piscine')">🏊 Scopri le piscine</button>
+      </div>
+    </div>
+    <svg class="hero-waves" viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
+    </svg>
+  </div>
+
+  <div class="home-sections">
+    <div class="section-cards scroll-reveal">
+      <a class="section-card" href="#" onclick="showPage('piscine');return false;"><div class="icon">🏊</div><h3>Piscine</h3><p>Interrate, semi-interrate e fuori terra. Skimmer e a sfioro.</p></a>
+      <a class="section-card" href="#" onclick="showPage('idromassaggi');return false;"><div class="icon">💧</div><h3>Idromassaggi</h3><p>Vasche idromassaggio per il tuo relax quotidiano.</p></a>
+      <a class="section-card" href="#" onclick="showPage('disinfezione');return false;"><div class="icon">⚗️</div><h3>Impianti &amp; Acqua</h3><p>Disinfezione chimica, elettrolisi salina e centraline.</p></a>
+      <a class="section-card" href="#" onclick="showPage('chimico');return false;"><div class="icon">🧪</div><h3>Ramo Chimico</h3><p>Prodotti certificati e kit precomposti per la cura dell'acqua.</p></a>
+      <a class="section-card" href="#" onclick="showPage('zanzare');return false;"><div class="icon">🌿</div><h3>Ramo Antizanzare</h3><p>Trattamenti professionali per la lotta alle zanzare.</p></a>
+    </div>
+  </div>
+
+  <section class="content-section" style="padding-top:60px;">
+    <div class="container">
+      <h2 class="section-title">I Nostri Lavori</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Alcuni dei progetti realizzati con passione e professionalità.</p>
+      <div class="gallery-grid scroll-reveal" id="lavoriGallery"></div>
+
+      <!-- SLIDER RECENSIONI -->
+      <div class="recensioni scroll-reveal">
+        <h2 class="section-title">Cosa dicono i nostri clienti</h2>
+        <div class="divider"></div>
+        <div class="recensioni-slider-container">
+          <button class="slider-arrow prev" id="recPrevBtn">❮</button>
+          <div class="recensioni-slider" id="recensioniSlider"></div>
+          <button class="slider-arrow next" id="recNextBtn">❯</button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>PiscineIntime</h4><p>Esperti in costruzione e manutenzione di piscine, impianti idrici e trattamento delle acque dal 2003.</p><div class="social-links"><a class="social-link" href="#">f</a><a class="social-link" href="#">ig</a></div></div>
+        <div><h4>Servizi</h4><a href="#" onclick="showPage('piscine')">🏊 Piscine</a><br><a href="#" onclick="showPage('idromassaggi')">💧 Idromassaggi</a><br><a href="#" onclick="showPage('chimico')">🧪 Ramo Chimico</a><br><a href="#" onclick="showPage('zanzare')">🌿 Ramo Zanzare</a></div>
+        <div><h4>Azienda</h4><a href="#" onclick="showPage('lavori')">🏗️ I Nostri Lavori</a><br><a href="#">👥 Chi siamo</a><br><a href="#" onclick="showPage('contatti')">📍 Contatti</a></div>
+        <div><h4>Contatti</h4><p>📍 Via Monte Nero 3, Caslino d'Erba(CO)</p><p>📞 Per piscine: +39 366 938 4154</p><p>📞 Per prodotti chimici e antizanzare: +39 375 110 2579</p><p>✉️ info@piscineintime.it</p><p>🕐 Lun–Ven 9:00–18:00</p></div>
+      </div>
+      <div class="footer-bottom">© 2026 PiscineIntime – Tutti i diritti riservati</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================================ -->
+<!--                       RICHIESTA PREVENTIVO                       -->
+<!-- ================================================================ -->
+<div id="page-preventivo" class="page">
+  <section class="content-section">
+    <div class="container">
+      <div class="ordini-intro" style="background: linear-gradient(135deg, var(--azzurro-scuro), #0F7B3A);">
+        <h2>📋 Richiedi un Preventivo</h2>
+        <p>Compila il modulo per richiedere un preventivo personalizzato per la costruzione della tua piscina. Ti risponderemo entro due giorni lavorativi.</p>
+      </div>
+      <div class="order-card" style="margin-top: 24px;">
+        <div class="order-card-header"><span style="font-size:28px;">🏊</span><h3>Dettagli richiesta preventivo</h3></div>
+        <div class="order-card-body">
+          <form id="preventivoForm">
+            <div class="form-grid">
+              <div class="form-group"><label>Nome <span class="required-star">*</span></label><input type="text" id="prevNome" required></div>
+              <div class="form-group"><label>Cognome <span class="required-star">*</span></label><input type="text" id="prevCognome" required></div>
+              <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" id="prevEmail" required></div>
+              <div class="form-group"><label>Telefono <span class="required-star">*</span></label><input type="tel" id="prevTel" required></div>
+              <div class="form-group"><label>Tipo di piscina desiderata *</label><select id="prevTipo" required><option value="">-- Seleziona --</option><option value="Interrata">Piscina Interrata</option><option value="Semi-interrata">Piscina Semi-interrata</option><option value="Fuori terra">Piscina Fuori terra</option><option value="Idromassaggio">Vasca Idromassaggio / Spa</option><option value="Altro">Altro (specificare nelle note)</option></select></div>
+              <div class="form-group"><label>Dimensioni approssimative</label><input type="text" id="prevDimensioni" placeholder="es. 8x4 m, profondità 1,5 m"></div>
+              <div class="form-group full"><label>Note / Richieste particolari</label><textarea id="prevNote" rows="4" placeholder="Aggiungi dettagli come finiture, accessori, scadenze, etc."></textarea></div>
+            </div>
+            <div style="background: var(--acqua2); border-radius: 12px; padding: 18px; margin-top: 20px;">
+              <p style="font-size:13px; margin-bottom:8px;">📩 <strong>Privacy</strong>: I tuoi dati verranno utilizzati solo per rispondere alla richiesta di preventivo.</p>
+              <label style="display: flex; align-items: center; gap: 6px; font-size:13px;"><input type="checkbox" id="prevConsenso" required> Acconsento al trattamento dei dati personali *</label>
+            </div>
+            <div style="text-align:center; margin-top: 32px;"><button type="submit" class="btn-submit" style="background: var(--verde); padding: 14px 40px;">✉️ Invia Richiesta Preventivo</button><p style="font-size:12px; color:var(--testo2); margin-top:12px;">* Campi obbligatori. Riceverai una risposta via email entro un giorno lavorativo.</p></div>
+            <div id="preventivoFeedback" style="margin-top: 20px; display: none; padding: 16px; border-radius: 12px; text-align:center;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                       IDROMASSAGGI                               -->
+<!-- ================================================================ -->
+<div id="page-idromassaggi" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Idromassaggi</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Vasche idromassaggio di qualità per il massimo relax. <a href="#" onclick="showPage('contatti');return false;">Contattaci</a> per un preventivo personalizzato.</p>
+      <div class="catalog-download-box"><span class="catalog-icon">📄</span><div class="catalog-text"><strong>Catalogo Idromassaggi</strong><p>Scarica il catalogo completo con tutti i modelli e le specifiche tecniche.</p></div><a href="img/catalogo_idromassaggi.pdf" download class="btn-catalogo">⬇ Scarica il Catalogo</a></div>
+      <div class="product-grid" id="idroGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                         PISCINE                                  -->
+<!-- ================================================================ -->
+<div id="page-piscine" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Piscine</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Realizziamo piscine su misura per ogni esigenza.</p>
+      <div class="highlight-box">🌊 <strong>Specializzati in piscine Skimmer e a Sfioro:</strong> offriamo entrambe le tipologie per garantire la soluzione perfetta al tuo progetto.</div>
+      <div class="piscina-tipo"><h3>🏗️ Piscine Interrate</h3><p>La scelta più elegante e duratura.</p><div class="tabs"><button class="tab active" onclick="switchTab(this,'interrata-1')">Tipo A – Classica</button><button class="tab" onclick="switchTab(this,'interrata-2')">Tipo B – Moderna</button><button class="tab" onclick="switchTab(this,'interrata-3')">Tipo C – Lusso</button></div><div id="interrata-1" class="tab-content active"><div class="product-grid" id="interrata1Grid"></div></div><div id="interrata-2" class="tab-content"><div class="product-grid" id="interrata2Grid"></div></div><div id="interrata-3" class="tab-content"><div class="product-grid" id="interrata3Grid"></div></div><div class="personalizzabile-notice">✏️ <strong>Completamente personalizzabile:</strong> ogni piscina viene progettata e realizzata su misura in base alle tue esigenze, al tuo spazio e al tuo stile. Dimensioni, rivestimenti, impianti e finiture sono scelti insieme a te. <a href="#" onclick="showPage('preventivo');return false;">Richiedi un preventivo gratuito →</a></div></div>
+      <div class="piscina-tipo"><h3>🔩 Piscine Semi-interrate</h3><p>Soluzione versatile per terreni con dislivelli.</p><div class="tabs"><button class="tab active" onclick="switchTab(this,'semi-1')">Tipo A</button><button class="tab" onclick="switchTab(this,'semi-2')">Tipo B</button><button class="tab" onclick="switchTab(this,'semi-3')">Tipo C</button></div><div id="semi-1" class="tab-content active"><div class="product-grid" id="semi1Grid"></div></div><div id="semi-2" class="tab-content"><div class="product-grid" id="semi2Grid"></div></div><div id="semi-3" class="tab-content"><div class="product-grid" id="semi3Grid"></div></div></div>
+      <div class="piscina-tipo"><h3>🌤️ Piscine Fuori Terra</h3><p>Soluzioni pratiche e rapide da installare.</p><div class="catalog-download-box"><span class="catalog-icon">📄</span><div class="catalog-text"><strong>Catalogo Piscine Fuori Terra</strong><p>Scarica il catalogo completo con tutti i modelli e le specifiche tecniche.</p></div><a href="img/catalogo_fuori_terra.pdf" download class="btn-catalogo">⬇ Scarica il Catalogo</a></div><div class="product-grid" id="fuoroTerraGrid"></div></div>
+      <!-- ===== RICHIESTA PREVENTIVO INLINE ===== -->
+      <div class="preventivo-inpage">
+        <div class="preventivo-inpage-header">
+          <h2>📋 Richiedi un Preventivo Gratuito</h2>
+          <p>Compila il modulo per ricevere un preventivo personalizzato entro due giorni lavorativi. Nessun impegno.</p>
+        </div>
+        <div class="order-card" style="max-width:800px;margin:0 auto;">
+          <div class="order-card-header">
+            <span style="font-size:26px;">🏊</span>
+            <h3>Dettagli della tua richiesta</h3>
+          </div>
+          <div class="order-card-body">
+            <div class="form-grid">
+              <div class="form-group"><label>Nome <span class="required-star">*</span></label><input type="text" id="prevNome" placeholder="Mario"></div>
+              <div class="form-group"><label>Cognome <span class="required-star">*</span></label><input type="text" id="prevCognome" placeholder="Rossi"></div>
+              <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" id="prevEmail" placeholder="mario@esempio.it"></div>
+              <div class="form-group"><label>Telefono <span class="required-star">*</span></label><input type="tel" id="prevTel" placeholder="+39 000 000 0000"></div>
+              <div class="form-group"><label>Tipo di piscina desiderata <span class="required-star">*</span></label><select id="prevTipo" required><option value="">-- Seleziona --</option><option value="Interrata">Piscina Interrata</option><option value="Semi-interrata">Piscina Semi-interrata</option><option value="Fuori terra">Piscina Fuori terra</option><option value="Idromassaggio">Vasca Idromassaggio / Spa</option><option value="Altro">Altro (specificare nelle note)</option></select></div>
+              <div class="form-group"><label>Dimensioni approssimative</label><input type="text" id="prevDimensioni" placeholder="es. 8x4 m, profondità 1,5 m"></div>
+              <div class="form-group full"><label>Note / Richieste particolari</label><textarea id="prevNote" rows="4" placeholder="Aggiungi dettagli come finiture, accessori, scadenze, etc."></textarea></div>
+            </div>
+            <div style="background:var(--acqua2);border-radius:14px;padding:18px;margin-top:16px;">
+              <p style="font-size:13px;margin-bottom:8px;">📩 <strong>Privacy</strong>: I tuoi dati verranno utilizzati solo per rispondere alla richiesta di preventivo.</p>
+              <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;"><input type="checkbox" id="prevConsenso" required> Acconsento al trattamento dei dati personali <span class="required-star">*</span></label>
+            </div>
+            <div style="text-align:center;margin-top:32px;">
+              <button type="button" class="btn-submit" onclick="submitPreventivoPiscine()" style="padding:14px 44px;">✉️ Invia Richiesta Preventivo</button>
+              <p style="font-size:12px;color:var(--testo2);margin-top:12px;">* Campi obbligatori. Riceverai una risposta entro 48h lavorative.</p>
+            </div>
+            <div id="preventivoFeedbackPiscine" style="margin-top:20px;display:none;padding:16px;border-radius:14px;text-align:center;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                       DISINFEZIONE                               -->
+<!-- ================================================================ -->
+<div id="page-disinfezione" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Disinfezione Chimica</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Sistemi professionali per il trattamento dell'acqua della piscina.</p>
+      <div class="product-grid" id="disinfezioneGrid"></div>
+      <h3 style="font-family:var(--font-titolo);color:var(--azzurro-scuro);margin:40px 0 16px;">Centraline</h3>
+      <div class="product-grid" id="centralineGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                       ELETTROLISI                                -->
+<!-- ================================================================ -->
+<div id="page-elettrolisi" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Elettrolisi Salina</h2>
+      <div class="divider"></div>
+      <p class="section-sub">La soluzione naturale per un'acqua cristallina senza cloro tradizionale.</p>
+      <div class="product-grid" id="elettrolisiGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                       COLLETTORI                                 -->
+<!-- ================================================================ -->
+<div id="page-collettori" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Collettori</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Sistemi di distribuzione ad alta efficienza per impianti piscina professionali.</p>
+      <div class="product-grid" id="colletoriGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                          FILTRI                                  -->
+<!-- ================================================================ -->
+<div id="page-filtri" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Filtri</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Filtrazione di qualità per un'acqua sempre pulita e trasparente.</p>
+      <div class="product-grid" id="filtriGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                 IMPIANTI MECCANICI                              -->
+<!-- ================================================================ -->
+<div id="page-meccanici" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">🔧 Impianti Meccanici</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Sistemi professionali di distribuzione, filtrazione e circolazione dell'acqua per garantire prestazioni ottimali e lunga durata alla tua piscina.</p>
+
+      <!-- Feature intro cards -->
+      <div class="meccanici-intro-grid">
+        <div class="meccanici-feature">
+          <div class="meccanici-feature-icon">🔗</div>
+          <div>
+            <h4>Collettori di distribuzione</h4>
+            <p>Distribuzione uniforme dell'acqua attraverso tutte le prese e gli ugelli della piscina, garantendo una circolazione ottimale e un trattamento chimico efficace su tutto il volume d'acqua.</p>
+          </div>
+        </div>
+        <div class="meccanici-feature">
+          <div class="meccanici-feature-icon">🌀</div>
+          <div>
+            <h4>Sistemi di filtrazione</h4>
+            <p>Filtri a sabbia, cartuccia e DE ad alta efficienza per rimuovere impurità e particolato. Materiali premium selezionati per garantire acqua cristallina con il minor consumo energetico.</p>
+          </div>
+        </div>
+        <div class="meccanici-feature">
+          <div class="meccanici-feature-icon">⚡</div>
+          <div>
+            <h4>Pompe di circolazione</h4>
+            <p>Pompe silenziose e a risparmio energetico per garantire una circolazione costante. Modelli con velocità variabile per ottimizzare consumi e portata in base alle esigenze della piscina.</p>
+          </div>
+        </div>
+        <div class="meccanici-feature">
+          <div class="meccanici-feature-icon">🛠️</div>
+          <div>
+            <h4>Installazione e manutenzione</h4>
+            <p>Il nostro team tecnico specializzato si occupa di progettazione, installazione e manutenzione ordinaria e straordinaria di tutti gli impianti meccanici, con interventi rapidi e garantiti.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Highlight box -->
+      <div class="highlight-box">
+        🔧 <strong>Impianto chiavi in mano:</strong> Progettiamo e installiamo l'intero sistema meccanico su misura per la tua piscina. Ogni componente è selezionato in base alla dimensione, alla tipologia e all'utilizzo dell'impianto. <a href="#" onclick="showPage('contatti');return false;" style="color:#A8DEFF;font-weight:600;text-decoration:underline;">Richiedi una consulenza gratuita →</a>
+      </div>
+
+      <!-- Collettori -->
+      <div class="meccanici-section-title">🔗 Collettori</div>
+      <p style="color:var(--testo2);font-size:14.5px;margin-bottom:28px;line-height:1.75;">I collettori PVC e acciaio inox garantiscono distribuzione bilanciata verso tutti i punti di ripresa e mandata. Disponibili in diverse configurazioni di uscite e diametri per adattarsi ad ogni progetto.</p>
+      <div class="product-grid" id="colletoriGrid"></div>
+
+      <!-- Filtri -->
+      <div class="meccanici-section-title">🌀 Filtri</div>
+      <p style="color:var(--testo2);font-size:14.5px;margin-bottom:28px;line-height:1.75;">Selezione di filtri professionali per acqua cristallina tutto l'anno. Dalla filtrazione a sabbia quarzosa ai moderni sistemi a cartuccia lavabile, con portate da 4 a oltre 60 m³/h per qualsiasi tipo di impianto.</p>
+      <div class="product-grid" id="filtriGrid"></div>
+
+      <!-- CTA contatti -->
+      <div style="background:linear-gradient(135deg,#f0f9ff,#e4f5fd);border-radius:24px;padding:36px 40px;margin-top:56px;text-align:center;border:1.5px solid rgba(11,111,164,0.12);">
+        <p style="font-size:1.15rem;color:var(--azzurro-scuro);font-family:var(--font-titolo);margin-bottom:12px;">Hai bisogno di assistenza tecnica?</p>
+        <p style="font-size:14.5px;color:var(--testo2);margin-bottom:24px;line-height:1.7;">I nostri tecnici sono a disposizione per sopralluoghi, preventivi e interventi di manutenzione su tutti i tipi di impianti meccanici.</p>
+        <button class="btn-submit" onclick="showPage('contatti')" style="margin-right:12px;">📍 Contattaci</button>
+        <button class="btn-primary" onclick="showPage('piscine')" style="background:linear-gradient(135deg,var(--accent),#D4900A);">📋 Richiedi Preventivo</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                       RAMO CHIMICO                               -->
+<!-- ================================================================ -->
+<div id="page-chimico" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Ramo Chimico</h2>
+      <div class="divider"></div>
+      <div class="cert-notice">⚠️ <strong>Attenzione:</strong> Per effettuare un ordine è necessario presentare un apposito certificato. Senza certificato valido non sarà possibile procedere all'acquisto.</div>
+      <div class="tabs"><button class="tab active" onclick="switchTab(this,'tab-prodotti')">Prodotti</button><button class="tab" id="tabKit" onclick="switchTab(this,'tab-kit')">Kit Precomposti</button></div>
+      <div id="tab-prodotti" class="tab-content active"><div class="product-grid" id="chimiciGrid"></div></div>
+      <div id="tab-kit" class="tab-content"><h3 style="font-family:var(--font-titolo);color:var(--azzurro-scuro);margin-bottom:8px;">Kit Precomposti</h3><p style="color:var(--testo2);font-size:14px;margin-bottom:24px;">Scegli il kit adatto al volume della tua piscina.</p><div class="kit-grid"><div class="kit-card" onclick="goToOrderWithKit('Kit Base – fino a 30 m³')"><div class="kit-badge">Fino a 30 m³</div><h4>Kit Base</h4><p>Per piscine piccole. Prodotti essenziali per la pulizia.</p></div><div class="kit-card" onclick="goToOrderWithKit('Kit Standard – 30 a 60 m³')"><div class="kit-badge">30 – 60 m³</div><h4>Kit Standard</h4><p>Per piscine medie. Trattamento completo e duraturo.</p></div><div class="kit-card" onclick="goToOrderWithKit('Kit Premium – 60 a 90 m³')"><div class="kit-badge">60 – 90 m³</div><h4>Kit Premium</h4><p>Per grandi piscine. Massima protezione.</p></div></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                       RAMO ZANZARE                               -->
+<!-- ================================================================ -->
+<div id="page-zanzare" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Ramo Antizanzare</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Servizi professionali per la lotta alle zanzare.</p>
+      <div class="highlight-box" style="margin-bottom:40px;">🌿 Utilizziamo prodotti a basso impatto ambientale, sicuri per persone e animali. <strong><a href="#" onclick="showPage('contatti');return false;">Contattaci</a></strong> per preventivi su misura.</div>
+      <div class="product-grid" id="zanzareGrid"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                     LAVORI & RECENSIONI                          -->
+<!-- ================================================================ -->
+<div id="page-lavori" class="page"></div>
+
+<!-- ================================================================ -->
+<!--                          ORDINI                                  -->
+<!-- ================================================================ -->
+<div id="page-ordini" class="page">
+  <div class="ordini-page">
+    <div class="container">
+      <div class="ordini-intro"><h2>🛒 Il tuo Carrello</h2><p>Controlla i prodotti selezionati, inserisci i tuoi dati e scegli come pagare.</p></div>
+
+      <!-- GATE: non loggato -->
+      <div id="ordineLoginGate" style="display:none;">
+        <div class="order-card" style="text-align:center; padding: 48px 32px;">
+          <div style="font-size:52px; margin-bottom:16px;">🔐</div>
+          <h3 style="font-family:var(--font-titolo); color:var(--azzurro-scuro); margin-bottom:12px;">Accedi per completare l'ordine</h3>
+          <p style="color:var(--testo2); font-size:14.5px; margin-bottom:28px; line-height:1.7;">Per inviare un ordine è necessario essere registrati e aver effettuato l'accesso.</p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+            <button class="btn-submit" onclick="openUserLogin()">👤 Accedi</button>
+            <button class="btn-primary" onclick="openUserRegister()">✨ Registrati</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM ORDINE (visibile solo se loggato) -->
+      <div id="ordineFormWrap">
+
+        <!-- 1. RIEPILOGO CARRELLO -->
+        <div class="order-card">
+          <div class="order-card-header"><span style="font-size:22px;">🛒</span><h3>Prodotti nel carrello</h3></div>
+          <div class="order-card-body">
+            <div class="cert-notice">⚠️ <strong>Nota:</strong> Per i prodotti del Ramo Chimico è richiesto un certificato valido.</div>
+            <div id="cartItemsList"></div>
+            <div id="cartTotaleBox" style="display:none; background:var(--azzurro-scuro); color:#fff; border-radius:12px; padding:14px 20px; margin:8px 0 0; justify-content:space-between; align-items:center;">
+              <span style="font-size:15px; font-weight:600;">💰 Totale ordine</span>
+              <span id="cartTotaleValore" style="font-size:22px; font-weight:700;">€ 0,00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. AGGIUNGI ALTRI PRODOTTI -->
+        <div class="order-card">
+          <div class="order-card-header"><span style="font-size:22px;">➕</span><h3>Aggiungi altri prodotti</h3></div>
+          <div class="order-card-body">
+            <div class="form-grid">
+              <div class="form-group" style="flex:2;"><label>Prodotto</label><select id="cart-prodotto"><option value="">– Seleziona prodotto –</option></select></div>
+              <div class="form-group" style="flex:0 0 100px;"><label>Quantità</label><input type="number" id="cart-qty" min="1" value="1"></div>
+              <div class="form-group" style="flex:0 0 auto; display:flex; align-items:flex-end;"><button class="btn-primary" onclick="addToCart()" style="white-space:nowrap;">+ Aggiungi</button></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. DATI CLIENTE + CERTIFICATO -->
+        <div class="order-card">
+          <div class="order-card-header"><span style="font-size:22px;">👤</span><h3>Dati di consegna</h3></div>
+          <div class="order-card-body">
+            <div class="form-grid">
+              <div class="form-group"><label>Nome <span class="required-star">*</span></label><input type="text" id="ord-nome" placeholder="Mario"></div>
+              <div class="form-group"><label>Cognome <span class="required-star">*</span></label><input type="text" id="ord-cognome" placeholder="Rossi"></div>
+              <div class="form-group"><label>Email <span class="required-star">*</span></label><input type="email" id="ord-email" placeholder="mario@esempio.it"></div>
+              <div class="form-group"><label>Telefono <span class="required-star">*</span></label><input type="tel" id="ord-tel" placeholder="+39 000 000 0000"></div>
+              <div class="form-group"><label>Indirizzo <span class="required-star">*</span></label><input type="text" id="ord-indirizzo" placeholder="Via, numero civico"></div>
+              <div class="form-group"><label>Città / CAP <span class="required-star">*</span></label><input type="text" id="ord-citta" placeholder="es. Milano, 20100"></div>
+              <div class="form-group full"><label>N° Certificato <span style="font-size:12px;color:var(--testo2);">(obbligatorio per prodotti chimici)</span></label><input type="text" id="ord-cert-globale" placeholder="Inserisci il numero del tuo certificato"></div>
+              <div class="form-group full"><label>Note aggiuntive</label><textarea id="ord-note" rows="3" placeholder="Orari preferiti, istruzioni speciali, ecc."></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. PAGAMENTO -->
+        <div class="order-card">
+          <div class="order-card-header"><span style="font-size:22px;">💳</span><h3>Metodo di Pagamento</h3></div>
+          <div class="order-card-body">
+            <p style="font-size:14px;color:var(--testo2);margin-bottom:16px;">Scegli come preferisci pagare il tuo ordine.</p>
+            <div class="payment-methods">
+              <div class="pay-method" id="pm-ritiro" onclick="selectPayment('ritiro')"><input type="radio" name="pagamento" value="ritiro"><div class="pay-check"></div><div class="pay-icon">🏪</div><h4>Ritiro in negozio</h4><p>Paga direttamente quando vieni a ritirare il prodotto.</p></div>
+              <div class="pay-method" id="pm-bonifico" onclick="selectPayment('bonifico')"><input type="radio" name="pagamento" value="bonifico"><div class="pay-check"></div><div class="pay-icon">🏦</div><h4>Bonifico bancario</h4><p>Effettua il bonifico e carica la ricevuta per procedere.</p></div>
+              <div class="pay-method" id="pm-assegno" onclick="selectPayment('assegno')"><input type="radio" name="pagamento" value="assegno"><div class="pay-check"></div><div class="pay-icon">📄</div><h4>Contrassegno</h4><p>Pagamento alla consegna</p></div>
+            </div>
+            <div class="payment-details" id="detail-bonifico">
+              <h5>📋 Istruzioni per il Bonifico</h5>
+              <p><strong>Intestatario:</strong> PiscineIntime S.r.l.</p><p><strong>Banca:</strong> Banca Esempio</p>
+              <div class="iban-box">IT00 X000 0000 0000 0000 0000 000</div>
+              <p><strong>Causale:</strong> Inserire nome, cognome e data ordine</p>
+              <p style="font-size:12px;color:#888;margin-top:8px;">⚠️ Caricare obbligatoriamente la ricevuta/screenshot del bonifico.</p>
+              <div class="file-upload-area" id="uploadArea" onclick="document.getElementById('ricevutaInput').click()">
+                <div class="upload-icon">📎</div>
+                <p><strong>Carica ricevuta / scansione del bonifico</strong></p>
+                <p>Clicca per selezionare file (JPG, PNG, PDF)</p>
+                <p class="file-name" id="fileName" style="display:none;"></p>
+              </div>
+              <input type="file" id="ricevutaInput" accept="image/*,.pdf" onchange="handleFileUpload(this)">
+            </div>
+            <div class="payment-details" id="detail-assegno"><h5>📋 Istruzioni per il Contrassegno</h5><p>Pagamento alla consegna</p></div>
+            <div class="payment-details" id="detail-ritiro">
+              <h5>📋 Informazioni sul Ritiro</h5>
+              <p><strong>Indirizzo:</strong> Via Monte Nero 3, Caslino d'Erba (CO)</p>
+              <p><strong>Orari:</strong> Lunedì–Venerdì 9:00–18:00</p>
+              <p><strong>Pagamento:</strong> Contanti o POS (bancomat/carta)</p>
+              <p style="font-size:12px;color:#888;margin-top:8px;">ℹ️ Verrai contattato per confermare la disponibilità prima del ritiro.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. INVIA -->
+        <div style="text-align:center; margin-bottom:40px;">
+          <button class="btn-submit" onclick="submitOrder()" id="btnSubmitOrder">📨 Invia Ordine</button>
+          <p style="font-size:12px;color:var(--testo2);margin-top:12px;">* Campi obbligatori. Sarai contattato entro un giorno lavorativo.</p>
+        </div>
+      </div>
+
+      <!-- I MIEI ORDINI (storico utente loggato) -->
+      <div id=\"mieiOrdiniWrap\" style=\"display:none; margin-bottom:40px;\">
+        <div class=\"order-card\">
+          <div class=\"order-card-header\">
+            <span style=\"font-size:22px;\">📋</span>
+            <h3>Storico ordini</h3>
+            <span id=\"mieiOrdiniCount\" class=\"storico-badge\" style=\"display:none;\"></span>
+          </div>
+          <div class=\"storico-legenda\">
+            <span class=\"stato-pill stato-nuovo\">🟢 Nuovo</span>
+            <span class=\"stato-pill stato-in_lavorazione\">🟡 In lavorazione</span>
+            <span class=\"stato-pill stato-completato\">🔵 Completato</span>
+            <span class=\"stato-pill stato-annullato\">🔴 Annullato</span>
+          </div>
+          <div class=\"order-card-body\" style=\"padding-top:12px;\">
+            <div id=\"mieiOrdiniList\"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUCCESSO -->
+      <div class="ordine-success" id="ordineSuccess">
+        <div class="success-icon">✅</div>
+        <h3>Ordine inviato con successo!</h3>
+        <p>Abbiamo ricevuto il tuo ordine. Ti contatteremo entro un giorno lavorativo per la conferma.</p>
+        <p>Il tuo numero d'ordine è:</p>
+        <div class="ordine-num" id="ordineNumDisplay"></div>
+        <div style="margin-top:24px;"><button class="btn-primary" onclick="nuovoOrdine()">Fai un altro ordine</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!--                          ADMIN                                   -->
+<!-- ================================================================ -->
+<div id="page-admin" class="page">
+  <div id="adminLoginView" class="admin-panel"><div class="admin-login"><h2>🔐 Area Admin</h2><p>Accedi con le tue credenziali</p><div class="form-group"><label>Username</label><input type="text" id="adminUser" placeholder="admin"></div><div class="form-group"><label>Password</label><input type="password" id="adminPass" placeholder="••••••••"></div><button class="btn-submit" style="width:100%;margin-top:20px;" onclick="adminLogin()">Accedi</button><p id="loginErr" style="font-size:12px;color:var(--rosso);text-align:center;margin-top:10px;display:none;">Credenziali non valide.</p></div></div>
+  <div id="adminMainView" class="admin-panel" style="display:none;"><div class="admin-inner"><div class="admin-header"><h2>🌊 PiscineIntime – Pannello Admin</h2><button onclick="adminLogout()">Esci</button></div><div class="stats-row"><div class="stat-card"><div class="num" id="statOrdini">0</div><div class="lbl">Ordini totali</div></div><div class="stat-card"><div class="num" id="statNuovi">0</div><div class="lbl">Nuovi ordini</div></div><div class="stat-card"><div class="num" id="statLavori">0</div><div class="lbl">Lavori pubblicati</div></div><div class="stat-card"><div class="num" id="statRecensioni">0</div><div class="lbl">Recensioni</div></div></div><div class="admin-grid"><div class="admin-sidebar"><div class="admin-menu-item active" onclick="adminSection(this,'ordini')">📦 Ordini</div><div class="admin-menu-item" onclick="adminSection(this,'prodotti')">🛒 Prodotti</div><div class="admin-menu-item" onclick="adminSection(this,'lavori-admin')">🏗️ Lavori</div><div class="admin-menu-item" onclick="adminSection(this,'recensioni-admin')">⭐ Recensioni</div><div class="admin-menu-item" onclick="adminSection(this,'promo-admin')">📢 Promozioni</div><div class="admin-menu-item" onclick="adminSection(this,'impostazioni')">⚙️ Impostazioni</div></div><div class="admin-content"><div id="admin-ordini" class="admin-section"><h3>Gestione Ordini</h3><div style="overflow-x:auto;"><table class="admin-table"><thead><tr><th>#</th><th>Cliente</th><th>Prodotti</th><th>Pagamento</th><th>Data</th><th>Stato</th><th>Azioni</th></tr></thead><tbody id="ordiniTableBody"></tbody></table></div></div><div id="admin-prodotti" class="admin-section" style="display:none;"><h3>Gestione Prodotti</h3><button class="btn-primary" onclick="openProductModal()">+ Aggiungi prodotto</button><div id="adminProductList"></div></div><div id="admin-lavori-admin" class="admin-section" style="display:none;"><h3>Gestione Lavori</h3><button class="btn-primary" onclick="openLavoroModal()">+ Aggiungi lavoro</button><div id="adminLavoriList"></div></div><div id="admin-recensioni-admin" class="admin-section" style="display:none;"><h3>Gestione Recensioni</h3><button class="btn-primary" onclick="openRecensioneModal()">+ Aggiungi recensione</button><div id="adminRecensioniList"></div></div><div id="admin-promo-admin" class="admin-section" style="display:none;"><h3>Testo Banner Promozioni</h3><div class="form-group"><label>Testo banner</label><input type="text" id="promoText" value="PROMOZIONI"></div><button class="btn-submit" onclick="savePromo()">Salva</button></div><div id="admin-impostazioni" class="admin-section" style="display:none;"><h3>Impostazioni Sito</h3><div class="form-grid"><div class="form-group"><label>Nome azienda</label><input type="text" id="set-nome"></div><div class="form-group"><label>Telefono</label><input type="text" id="set-tel"></div><div class="form-group"><label>Email</label><input type="email" id="set-email"></div><div class="form-group"><label>Indirizzo</label><input type="text" id="set-indirizzo"></div><div class="form-group"><label>IBAN</label><input type="text" id="set-iban"></div><div class="form-group"><label>Username Admin</label><input type="text" id="set-adminuser"></div><div class="form-group full"><label>Nuova password Admin</label><input type="password" id="set-pass" placeholder="Lascia vuoto per non cambiare"></div></div><button class="btn-submit" onclick="saveImpostazioni()">Salva impostazioni</button></div></div></div></div></div></div>
+</div>
+
+<!-- ================================================================ -->
+<!--                     IMPIANTI & ACQUA                             -->
+<!-- ================================================================ -->
+<div id="page-impiantiAcqua" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Impianti &amp; Acqua</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Soluzioni complete per il trattamento e la gestione dell'acqua della tua piscina. Dalla disinfezione chimica all'elettrolisi salina, fino alle centraline di controllo automatico.</p>
+
+      <div class="impianti-grid">
+        <a class="impianti-card" href="#" onclick="showPage('disinfezione');return false;">
+          <div class="impianti-icon">⚗️</div>
+          <h3>Disinfezione Chimica</h3>
+          <p>Sistemi UV, generatori di ozono e dosatori automatici per un'acqua sempre pulita e sicura.</p>
+          <span class="impianti-link">Scopri →</span>
+        </a>
+        <a class="impianti-card" href="#" onclick="showPage('elettrolisi');return false;">
+          <div class="impianti-icon">⚡</div>
+          <h3>Elettrolisi Salina</h3>
+          <p>La soluzione naturale per un'acqua cristallina senza cloro tradizionale. Delicata sulla pelle.</p>
+          <span class="impianti-link">Scopri →</span>
+        </a>
+        <a class="impianti-card" href="#" onclick="showPage('chimico');return false;">
+          <div class="impianti-icon">🧪</div>
+          <h3>Prodotti Chimici</h3>
+          <p>Gamma completa di prodotti certificati per il mantenimento dell'equilibrio chimico dell'acqua.</p>
+          <span class="impianti-link">Scopri →</span>
+        </a>
+      </div>
+
+      <div style="margin-top:48px;">
+        <h3 style="font-family:var(--font-titolo);color:var(--azzurro-scuro);margin-bottom:16px;">Centraline di Controllo</h3>
+        <p style="color:var(--testo2);margin-bottom:28px;">Le nostre centraline automatiche monitorano e regolano costantemente pH, cloro e altri parametri, garantendo condizioni ottimali sempre e senza sforzo.</p>
+        <div class="product-grid" id="impiantiCentralineGrid"></div>
+      </div>
+
+      <div class="highlight-box" style="margin-top:48px;">
+        💡 <strong>Non sai quale sistema fa per te?</strong> I nostri esperti ti guideranno nella scelta più adatta alla tua piscina. <a href="#" onclick="showPage('contatti');return false;"><strong>Contattaci</strong></a> per una consulenza gratuita.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================================================================ -->
+<!--                          CONTATTI (MIGLIORATA)                   -->
+<!-- ================================================================ -->
+<div id="page-contatti" class="page">
+  <section class="content-section">
+    <div class="container">
+      <h2 class="section-title">Contatti</h2>
+      <div class="divider"></div>
+      <p class="section-sub">Siamo a tua disposizione per qualsiasi informazione, preventivo o assistenza. Contattaci nel modo che preferisci.</p>
+
+      <div class="contatti-grid">
+        <div class="contatti-info">
+          <h3>📍 Dove siamo</h3>
+
+          <div class="contatto-item">
+            <div class="contatto-icon">📍</div>
+            <div>
+              <strong>Sede</strong>
+              <p>Via Monte Nero 3<br>Caslino d'Erba (CO)</p>
+            </div>
+          </div>
+
+          <div class="contatto-item">
+            <div class="contatto-icon">📞</div>
+            <div>
+              <strong>Telefono – Ramo Piscine</strong>
+              <p><a href="tel:+393669384154">+39 366 938 4154</a></p>
+            </div>
+          </div>
+
+          <div class="contatto-item">
+            <div class="contatto-icon">📞</div>
+            <div>
+              <strong>Telefono – Prodotti Chimici &amp; Antizanzare - (solo Whatsapp)</strong>
+              <p><a href="tel:+393751102579">+39 375 110 2579</a></p>
+            </div>
+          </div>
+
+          <div class="contatto-item">
+            <div class="contatto-icon">✉️</div>
+            <div>
+              <strong>Email</strong>
+              <p><a href="mailto:info@piscineintime.it">info@piscineintime.it</a></p>
+            </div>
+          </div>
+
+          <div class="contatto-item">
+            <div class="contatto-icon">🕐</div>
+            <div>
+              <strong>Orari</strong>
+              <p>Lunedì – Venerdì: 9:00 – 18:00<br>Sabato: su appuntamento</p>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a class="social-link" href="#">f</a>
+            <a class="social-link" href="#">ig</a>
+            <a class="social-link" href="#">in</a>
+          </div>
+        </div>
+
+        <div class="contatti-form-box">
+          <h3>✉️ Scrivici</h3>
+          <div class="form-grid">
+            <div class="form-group"><label>Nome *</label><input type="text" id="cont-nome" placeholder="Mario"></div>
+            <div class="form-group"><label>Cognome *</label><input type="text" id="cont-cognome" placeholder="Rossi"></div>
+            <div class="form-group full"><label>Email *</label><input type="email" id="cont-email" placeholder="mario@esempio.it"></div>
+            <div class="form-group full"><label>Telefono</label><input type="tel" id="cont-tel" placeholder="+39 000 000 0000"></div>
+            <div class="form-group full"><label>Messaggio *</label><textarea id="cont-messaggio" rows="5" placeholder="Scrivi qui la tua richiesta..."></textarea></div>
+          </div>
+          <div style="text-align:center;margin-top:24px;">
+            <button class="btn-submit" onclick="inviaContatto()">✉️ Invia Messaggio</button>
+          </div>
+          <div id="contattoFeedback" style="margin-top:16px;display:none;padding:14px;border-radius:10px;text-align:center;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- ================================================================ -->
+<!-- ======================== MODALI ================================ -->
+<!-- ================================================================ -->
+<div class="modal-overlay" id="ordineDetailModal"><div class="modal"><button class="close-btn" onclick="closeModal('ordineDetailModal')">✕</button><h3>📦 Dettaglio Ordine</h3><div id="ordineDetailContent"></div></div></div>
+<div class="modal-overlay" id="productModal"><div class="modal"><button class="close-btn" onclick="closeModal('productModal')">✕</button><h3>Aggiungi Prodotto</h3><div class="form-grid"><div class="form-group full"><label>Sezione</label><select id="prod-sezione"><option value="idro">Idromassaggi</option><option value="chimici">Prodotti Chimici</option><option value="zanzare">Zanzare</option><option value="disinfezione">Disinfezione</option><option value="centraline">Centraline</option><option value="elettrolisi">Elettrolisi Salina</option><option value="collettori">Collettori</option><option value="filtri">Filtri</option><option value="interrata1">Piscine Interrate A</option><option value="interrata2">Piscine Interrate B</option><option value="interrata3">Piscine Interrate C</option><option value="semi1">Semi-interrate A</option><option value="semi2">Semi-interrate B</option><option value="semi3">Semi-interrate C</option><option value="fuoroterra">Fuori Terra</option></select></div><div class="form-group full"><label>Nome prodotto</label><input type="text" id="prod-nome"></div><div class="form-group full"><label>Descrizione</label><textarea id="prod-desc"></textarea></div><div class="form-group full"><label>Percorso immagine</label><input type="text" id="prod-img" placeholder="img/prodotto.jpg"></div></div><button class="btn-submit" onclick="saveProduct()">Salva Prodotto</button></div></div>
+<div class="modal-overlay" id="lavoroModal"><div class="modal"><button class="close-btn" onclick="closeModal('lavoroModal')">✕</button><h3>Aggiungi Lavoro</h3><div class="form-grid"><div class="form-group full"><label>Titolo</label><input type="text" id="lav-titolo"></div><div class="form-group full"><label>Descrizione</label><textarea id="lav-desc"></textarea></div><div class="form-group full"><label>Percorso immagine</label><input type="text" id="lav-img"></div></div><button class="btn-submit" onclick="saveLavoro()">Salva</button></div></div>
+<div class="modal-overlay" id="recensioneModal"><div class="modal"><button class="close-btn" onclick="closeModal('recensioneModal')">✕</button><h3>Aggiungi Recensione</h3><div class="form-grid"><div class="form-group full"><label>Nome cliente</label><input type="text" id="rec-autore"></div><div class="form-group full"><label>Stelle (1–5)</label><input type="number" id="rec-stelle" min="1" max="5" value="5"></div><div class="form-group full"><label>Testo recensione</label><textarea id="rec-testo"></textarea></div></div><button class="btn-submit" onclick="saveRecensione()">Salva</button></div></div>
+<div class="modal-overlay" id="userLoginModal"><div class="modal"><button class="close-btn" onclick="closeModal('userLoginModal')">✕</button><h3>Accedi</h3><div class="form-group"><label>Email</label><input type="email" id="loginEmail"></div><div class="form-group"><label>Password</label><input type="password" id="loginPass"></div><div id="loginUserErr" style="display:none;"></div><button class="btn-submit" onclick="userLogin()">Accedi</button><p><a href="#" onclick="switchToRegister();return false;">Registrati</a></p></div></div>
+<div class="modal-overlay" id="userRegisterModal"><div class="modal"><button class="close-btn" onclick="closeModal('userRegisterModal')">✕</button><h3>Registrati</h3><div class="form-grid"><div class="form-group"><label>Nome</label><input type="text" id="regNome"></div><div class="form-group"><label>Cognome</label><input type="text" id="regCognome"></div><div class="form-group full"><label>Email</label><input type="email" id="regEmail"></div><div class="form-group full"><label>Telefono</label><input type="tel" id="regTel"></div><div class="form-group full"><label>Password</label><input type="password" id="regPass"></div><div class="form-group full"><label>Conferma password</label><input type="password" id="regPass2"></div></div><div id="registerErr" style="display:none;"></div><button class="btn-submit" onclick="userRegister()">Crea account</button></div></div>
+
+<div class="toast" id="toastEl"></div>
+
+<!-- ===== FLOATING CART BUBBLE ===== -->
+<div id="cartBubble" onclick="showPage('ordini')" title="Vai al carrello" style="display:none;">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+  <span class="cart-bubble-badge">0</span>
+</div>
+
+<!-- ===== MINI TOAST CARRELLO ===== -->
+<div id="cartMiniToast">
+  <span>🛒 Aggiunto:</span>
+  <span class="cmt-nome"></span>
+  <button onclick="showPage('ordini');document.getElementById('cartMiniToast').classList.remove('visible')">Vai al carrello →</button>
+</div>
+
+<div id="lightbox-overlay" onclick="closeLightbox()">
+  <button id="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="js/db.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/ordini.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/users.js"></script>
+<script src="js/preventivo.js"></script>
+
+</body>
+</html>
