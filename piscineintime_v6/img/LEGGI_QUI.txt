@@ -1,0 +1,53 @@
+==============================================
+  CARTELLA IMMAGINI – PiscineIntime
+==============================================
+
+Inserire in questa cartella tutte le immagini
+del sito con i seguenti nomi suggeriti:
+
+LOGO & GENERALE
+  logo.png              ← Logo aziendale (52×52 px)
+  placeholder.jpg       ← Immagine placeholder generica
+
+PISCINE
+  piscina-interrata.jpg
+  piscina-moderna.jpg
+  piscina-infinity.jpg
+  piscina-semi.jpg
+  piscina-fuori-terra.jpg
+
+IDROMASSAGGI
+  idromassaggio.jpg
+  idromassaggio-2.jpg
+
+PRODOTTI CHIMICI
+  cloro-granulare.jpg
+  cloro-liquido.jpg
+  antialghe.jpg
+  flocculante.jpg
+  ph-plus.jpg
+  ph-minus.jpg
+  shock-cloro.jpg
+
+IMPIANTI
+  sistema-uv.jpg
+  centralina.jpg
+  elettrolizzatore.jpg
+  collettore.jpg
+  filtro-sabbia.jpg
+
+ZANZARE
+  trattamento-perimetrale.jpg
+  trattamento-adulticida.jpg
+  trattamento-larvicida.jpg
+
+LAVORI ESEGUITI
+  lavoro1.jpg
+  lavoro2.jpg
+  lavoro3.jpg
+  (aggiungere quante ne servono)
+
+==============================================
+FORMATO CONSIGLIATO: JPG o WebP
+DIMENSIONI: 800×500 px per prodotti/lavori
+==============================================
