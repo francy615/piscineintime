@@ -1,0 +1,88 @@
+/* ========== VALIDAZIONE UNIFICATA ========== */
+
+// Rimuove errori visivi da un gruppo
+function clearFieldError(fieldGroup) {
+  fieldGroup.classList.remove('error');
+  const errSpan = fieldGroup.querySelector('.field-error');
+  if (errSpan) errSpan.remove();
+}
+
+// Mostra errore per un singolo campo
+function showFieldError(fieldGroup, message) {
+  fieldGroup.classList.add('error');
+  let errSpan = fieldGroup.querySelector('.field-error');
+  if (!errSpan) {
+    errSpan = document.createElement('span');
+    errSpan.className = 'field-error';
+    fieldGroup.appendChild(errSpan);
+  }
+  errSpan.textContent = message;
+}
+
+// Valida un campo in base al tipo
+function validateField(input, type = 'text') {
+  const group = input.closest('.form-group');
+  if (!group) return true;
+  clearFieldError(group);
+  const value = input.value.trim();
+  
+  if (input.hasAttribute('required') && !value) {
+    showFieldError(group, 'Campo obbligatorio');
+    return false;
+  }
+  if (type === 'email' && value && !/^[^\s@]+@([^\s@]+\.)+[^\s@]+$/.test(value)) {
+    showFieldError(group, 'Inserisci un indirizzo email valido');
+    return false;
+  }
+  if (type === 'tel' && value && !/^[\d\s+()-]{6,}$/.test(value)) {
+    showFieldError(group, 'Numero di telefono non valido');
+    return false;
+  }
+  if (type === 'password' && input.id === 'regPass' && value && value.length < 6) {
+    showFieldError(group, 'La password deve avere almeno 6 caratteri');
+    return false;
+  }
+  if (input.id === 'regPass2' && value) {
+    const pass1 = document.getElementById('regPass')?.value.trim() || '';
+    if (value !== pass1) {
+      showFieldError(group, 'Le password non coincidono');
+      return false;
+    }
+  }
+  return true;
+}
+
+// Mostra un messaggio generale di feedback (successo/errore)
+function showFormFeedback(formId, message, isSuccess = false) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  let feedbackDiv = form.querySelector('.form-feedback');
+  if (!feedbackDiv) {
+    feedbackDiv = document.createElement('div');
+    feedbackDiv.className = 'form-feedback';
+    form.prepend(feedbackDiv);
+  }
+  feedbackDiv.textContent = message;
+  feedbackDiv.style.display = 'block';
+  if (isSuccess) {
+    feedbackDiv.classList.add('success');
+  } else {
+    feedbackDiv.classList.remove('success');
+  }
+  setTimeout(() => {
+    feedbackDiv.style.display = 'none';
+  }, 5000);
+}
+
+// Attacca validatori automatici a tutti i campi con classe 'validate-on-blur'
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(field => {
+    field.addEventListener('blur', function() {
+      let type = 'text';
+      if (this.type === 'email') type = 'email';
+      if (this.type === 'tel') type = 'tel';
+      if (this.type === 'password') type = 'password';
+      validateField(this, type);
+    });
+  });
+});
